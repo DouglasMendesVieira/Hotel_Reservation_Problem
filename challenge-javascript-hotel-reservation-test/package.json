@@ -1,0 +1,30 @@
+{
+  "name": "js-test-project",
+  "version": "1.0.0",
+  "description": "A simple project with a single failing test",
+  "scripts": {
+    "test": "node ./tests/index.js"
+  },
+  "dependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^4.0.1"
+  },
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/syngenta-digital/challenge-js-test-project.git"
+  },
+  "keywords": [],
+  "author": {
+    "name": "Douglas Mendes",
+    "email": "douglas.mendes.vieira@gmail.com"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/syngenta-digital/challenge-js-test-project/issues"
+  },
+  "homepage": "https://github.com/syngenta-digital/challenge-js-test-project#readme"
+}
