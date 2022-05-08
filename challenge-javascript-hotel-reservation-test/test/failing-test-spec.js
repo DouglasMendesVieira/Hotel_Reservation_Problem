@@ -1,18 +1,26 @@
-'use strict'
+const readFileContent =
+  require("../src/controllers/fileController").readFileContent;
+const hotelController = require("../src/controllers/hotelController");
+const userController = require("../src/controllers/userController");
+const hotelsConfig = require("../src/configs/hotel.config").Hotels;
+const betterHotel = require("../main").betterHotelOption;
 
-const chai = require('chai')
-const expect = chai.expect
-const hotels = require('../src/main')
-const getCheapestHotel = hotels.getCheapestHotel 
+const path = "examples.txt";
 
-describe('test', function () {
-  it('should return Lakewood', function () {
-    expect(getCheapestHotel("Regular: 16Mar2009(mon), 17Mar2009(tues), 18Mar2009(wed)")).to.equal("Lakewood");
-  });
-  it('should return Bridgewood', function () {
-    expect(getCheapestHotel("Regular: 20Mar2009(fri), 21Mar2009(sat), 22Mar2009(sun)")).to.equal("Bridgewood");
-  });
-  it('should return Ridgewood', function () {
-    expect(getCheapestHotel("Rewards: 26Mar2009(thur), 27Mar2009(fri), 28Mar2009(sat)")).to.equal("Ridgewood");
-  });
-})
+//Inicializando configuração dos hotéis
+const hotels = hotelsConfig.map((hotel) => hotelController.newHotel(hotel));
+
+//Lendo conteúdo de entrada
+const entries = readFileContent(path);
+
+const users = entries.map((entry) => {
+  const matchUserType = /([A-Z])\w+:/gi;
+  const userType = matchUserType.exec(entry)[0].replace(/\:/, "").trim();
+  let days = entry.replace(userType, "").trim().split(",");
+
+  days = days.map((day) => day.replace(":", "").trim());
+
+  return userController.newUser(userType, days);
+});
+
+users.map((user) => betterHotel(user, hotels));
