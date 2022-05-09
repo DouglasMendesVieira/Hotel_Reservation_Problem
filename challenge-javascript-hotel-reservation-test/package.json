@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "A simple project with a single failing test",
   "scripts": {
-    "test": "node ./test/index.js"
+    "test": "node ./test/failing-test-spec.js",
+    "unitarytests": "node ./test/index.js"
   },
   "dependencies": {
     "chai": "^4.1.2",

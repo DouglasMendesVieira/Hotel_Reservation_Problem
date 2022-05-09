@@ -1,1 +1,3 @@
-require("./failing-test-spec");
+require('./user-spec')
+require('./daily-spec')
+require('./hotel-spec')
